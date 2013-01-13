@@ -2,6 +2,10 @@ Restr
 =====
     Restructured Text editor for Gnome
 
+Screen shot
+
+.. image:: https://raw.github.com/nitipit/restr/master/docs/screenshot.png
+    :width: 800px
 
 Installation
 ------------
