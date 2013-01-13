@@ -29,5 +29,5 @@ setup(
     package_dir={'restr': 'restr'},
     package_data={'restr': data},
     scripts=['restr/restr'],
-    install_requires=['appkit==0.2.1', 'Jinja2']
+    install_requires=['docutils', 'appkit==0.2.1', 'Jinja2']
 )
