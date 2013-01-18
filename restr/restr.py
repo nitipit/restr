@@ -17,7 +17,6 @@ except:
     file_name = None
 
 app.file_name = file_name
-app.window.set_title('Restr')
 
 
 @app.route('/$')
