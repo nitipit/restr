@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from appkit.v0_2_1 import App
+from appkit import App
 import os
 import sys
 from docutils.core import publish_parts
