@@ -15,7 +15,7 @@ for d in os.walk('restr/'):
 setup(
     # Metadata
     name="Restr",
-    version="0.1",
+    version="0.1.2",
     author="Nitipit Nontasuwan",
     author_email="nitipit@gmail.com",
     url="http://nitipit.github.com/restr/",
@@ -29,5 +29,5 @@ setup(
     package_dir={'restr': 'restr'},
     package_data={'restr': data},
     scripts=['restr/restr'],
-    install_requires=['docutils', 'appkit==0.2.1', 'Jinja2']
+    install_requires=['docutils', 'appkit==0.2.2', 'Jinja2']
 )
