@@ -1,5 +1,5 @@
 #!/usr/bin/env python
 
-from restr.restr import app
+from restr import app
 
 app.run()

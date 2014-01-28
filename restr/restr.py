@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-from appkit import App
+from appkit.api.v0_2_6 import App
+from flask import render_template, request
 import os
 import sys
 from docutils.core import publish_parts
-from jinja2 import Template
 
 
-app = App(__file__)
+app = App(__name__)
 
 try:
     file_name = sys.argv[1]
@@ -19,35 +19,32 @@ except:
 app.file_name = file_name
 
 
-@app.route('/$')
+@app.route('/')
 def index():
-    ui_path = os.path.join(os.path.dirname(__file__), 'ui.html')
-    template = Template(open(ui_path).read())
     text = None
     if app.file_name is not None:
         text = open(file_name).read()
-    return template.render(file_name=app.file_name, text=text)
+    return render_template('/ui.html',file_name=app.file_name, text=text)
 
 
-@app.route('/rst2html/')
+@app.route('/rst2html/', methods=['POST',])
 def rst2html():
-    dom_document = app.webkit_web_view.get_dom_document()
-    html = dom_document.get_element_by_id('editor').get_value()
+    html = request.form.get('text', None)
     html = publish_parts(html, writer_name='html')['html_body']
     return html
 
 
-@app.route('/save/')
+@app.route('/save/', methods=['POST',])
 def save():
-    """save markdown content to the file"""
-
-    document = app.webkit_web_view.get_dom_document()
-    file_name = document.get_element_by_id('file').get_value()
-    md = document.get_element_by_id('editor').get_value()
+    """save rest content to the file"""
+    
+    file_name = request.form.get('file', None)
+    text = request.form.get('text', None)
     f = open(file_name, 'w')
-    f.write(md)
+    f.write(text)
     f.close()
     return 'Saved'
 
 if __name__ == '__main__':
+    app.debug = True
     app.run()
