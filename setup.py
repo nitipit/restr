@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
+from restr import __version__
 import os
 
 data = list()
@@ -15,7 +16,7 @@ for d in os.walk('restr/'):
 setup(
     # Metadata
     name="Restr",
-    version="0.1.3",
+    version=__version__,
     author="Nitipit Nontasuwan",
     author_email="nitipit@gmail.com",
     url="http://nitipit.github.com/restr/",

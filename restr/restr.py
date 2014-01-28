@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from appkit.api.v0_2_6 import App
+from appkit.api.v0_2_8 import App
 from flask import render_template, request
 import os
 import sys
@@ -24,20 +24,20 @@ def index():
     text = None
     if app.file_name is not None:
         text = open(file_name).read()
-    return render_template('/ui.html',file_name=app.file_name, text=text)
+    return render_template('/ui.html', file_name=app.file_name, text=text)
 
 
-@app.route('/rst2html/', methods=['POST',])
+@app.route('/rst2html/', methods=['POST', ])
 def rst2html():
     html = request.form.get('text', None)
     html = publish_parts(html, writer_name='html')['html_body']
     return html
 
 
-@app.route('/save/', methods=['POST',])
+@app.route('/save/', methods=['POST', ])
 def save():
     """save rest content to the file"""
-    
+
     file_name = request.form.get('file', None)
     text = request.form.get('text', None)
     f = open(file_name, 'w')
@@ -46,5 +46,4 @@ def save():
     return 'Saved'
 
 if __name__ == '__main__':
-    app.debug = True
     app.run()
