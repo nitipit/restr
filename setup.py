@@ -15,13 +15,13 @@ for d in os.walk('restr/'):
 setup(
     # Metadata
     name="Restr",
-    version='0.1.4',
+    version='0.1.6',
     author="Nitipit Nontasuwan",
     author_email="nitipit@gmail.com",
     url="http://nitipit.github.com/restr/",
     license="MIT",
     description="Restructured Text editor for Gnome",
-    platforms=['linux'],
+    platforms=['linux, gnome'],
     keywords=['editor', 'restructured text', 'rst'],
 
     # Setup config
