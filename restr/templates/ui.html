@@ -27,14 +27,14 @@
 <body>
 <div class="row">
     <div id="editor-section" class="columns large-6 medium-6">
-    	<div class="row collapse">
-    		<div class="columns large-10 small-10">
-	        	<input id="file" type="text" placeholder="Input file name here" {% if file_name != None %}value="{{file_name}}"{% endif %}>
-	        </div>
-	        <div class="columns large-2 small-2">
-	        	<button id="save" class="postfix"><i class="fa fa-save"></i> Save</button>
-	        </div>
-	    </div>
+        <div class="row collapse">
+            <div class="columns large-10 small-10">
+                <input id="file" type="text" placeholder="Input file name here" {% if file_name != None %}value="{{file_name}}"{% endif %}>
+            </div>
+            <div class="columns large-2 small-2">
+                <button id="save" class="postfix"><i class="fa fa-save"></i> Save</button>
+            </div>
+        </div>
         <textarea id="editor" style="width: 100%;">{{text or ''}}</textarea>
     </div>
     <div class="columns large-6 medium-6">
@@ -51,28 +51,27 @@ $(document).foundation();
 var code_mirror = CodeMirror.fromTextArea(
     $('#editor')[0],
     {
-    	onChange: function(){
-     	var d = new Date();
+        onChange: function(){
+        var d = new Date();
         var text = code_mirror.getValue();
         $.post('/rst2html/',{'text': text}, function(data){
-        	$('#result').html(data);
+            $('#result').html(data);
         });
-     },
-		indentUnit: 4,
-		smartIndent: true,
-		lineWrapping: true,
-		lineNumbers: true
-    }
-);
+    },
+    indentUnit: 4,
+    smartIndent: true,
+    lineWrapping: true,
+    lineNumbers: true
+});
 
 code_mirror.setValue($('#editor').val());
 
 $('#save').click(function(){
-	var d = new Date();
-	$.post('/save/?'+d.getTime(), {
-		"file": $('#file').val(),
-		"text": code_mirror.getValue()
-	});
+    var d = new Date();
+    $.post('/save/?'+d.getTime(), {
+        "file": $('#file').val(),
+        "text": code_mirror.getValue()
+    });
 });
 </script>
 </body>
