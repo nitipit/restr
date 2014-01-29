@@ -1,2 +1,7 @@
-body {
+.row {
+	min-width: 100% !important;
+}
+
+#result {
+	word-wrap: break-word;
 }
